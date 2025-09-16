@@ -10,4 +10,12 @@
     <PackageReference Include="Andrew.Infrastructure.SharedKernel" Version="1.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DataPermission.Domain\DataPermission.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Configs\" />
+  </ItemGroup>
+
 </Project>

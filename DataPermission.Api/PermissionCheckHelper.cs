@@ -1,0 +1,50 @@
+﻿using DataPermission.Domain.Constants;
+using DataPermission.Infra;
+
+namespace DataPermission.Api
+{
+    public class PermissionCheckHelper(IConfiguration configuration, ApiClientHelper apiClientHelper, IHttpContextAccessor httpContextAccessor)
+    {
+        /// <summary>
+        /// Permission Check Helper
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="permissionKey"></param>
+        /// <param name="cancellation"></param>
+        /// <returns></returns>
+        public async Task<bool> CheckPermission(long userId, string permissionKey, CancellationToken cancellation = default)
+        {
+
+            var authHeader = Convert.ToString(httpContextAccessor.HttpContext?.Request.Headers["Authorization"]);
+            if (string.IsNullOrEmpty(authHeader))
+            {
+                return false;
+            }
+            var token = authHeader.StartsWith("Bearer ") ? authHeader.Substring(7) : authHeader;
+            if (string.IsNullOrEmpty(token))
+            {
+                return false;
+            }
+            var url = configuration["OuterApiUrl:CheckPermissionApiUrl"];
+            if (string.IsNullOrEmpty(url))
+            {
+                return false;
+            }
+
+            var dto = new
+            {
+                PermissionKey = permissionKey,
+                UserId = userId,
+                ConstantValues.SystemName
+            };
+            apiClientHelper.SetBearerToken(token);
+            var res = await apiClientHelper.PostAsync<ApiResponse<string>>(url, dto);
+            if (res?.Success == true)
+            {
+                return true;
+            }
+            return false;
+
+        }
+    }
+}
