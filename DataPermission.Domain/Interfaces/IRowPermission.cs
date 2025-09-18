@@ -9,7 +9,6 @@ namespace DataPermission.Domain.Interfaces
 {
     public interface IRowPermission
     {
-        Task AddRowPermission(RowPermission rowPermission);
-        Task DeleteRowPermission(long id);
+      
     }
 }
