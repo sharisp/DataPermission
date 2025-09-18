@@ -1,4 +1,5 @@
-﻿using Infrastructure.SharedKernel;
+﻿using DataPermission.Domain.Entities;
+using Infrastructure.SharedKernel;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -21,12 +22,12 @@ namespace DataPermission.Infra.Repository
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-
-
         }
 
-        //public DbSet<FileUpload> FileUploads { get; set; }
+        public DbSet<RowPermission> RowPermissions { get; set; }
 
+        public DbSet<ColumnPermission> ColumnPermissions { get; set; }
+        public DbSet<RoleDataPermission> RoleDataPermissions { get; set; }
 
 
     }
