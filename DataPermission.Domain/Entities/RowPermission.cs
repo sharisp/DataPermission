@@ -9,28 +9,22 @@ using System.Threading.Tasks;
 
 namespace DataPermission.Domain.Entities
 {
-    public class RowPermission: BaseEntity, IAggregateRoot
+    public class RowPermission: DataPermission, IAggregateRoot
     {
       
-        public string TableName { get; private set; }
         public RowDataScopeEnum DataScopeType { get; private set; }
         public string? ScopeField { get; private set; }
-        public string? ScopeValue { get; private set; }
-        public string? Description { get; set; }
+        public string? ScopeValue { get; private set; }      
 
         private RowPermission() { }
-        public RowPermission(string tableName, RowDataScopeEnum dataScopeType, string? scopeField, string? scopeValue)
-        {
-            TableName = tableName;
+        public RowPermission(string tableName, RowDataScopeEnum dataScopeType, string? scopeField, string? scopeValue,string? description) : base(tableName, description)
+        {         
             DataScopeType = dataScopeType;
             ScopeField = scopeField;
             ScopeValue = scopeValue;
         }
 
-        public void UpdateTableName(string tableName)
-        {
-            TableName = tableName;
-        }
+     
         public void UpdateDataScopeType(RowDataScopeEnum dataScopeType)
         {
             DataScopeType = dataScopeType;

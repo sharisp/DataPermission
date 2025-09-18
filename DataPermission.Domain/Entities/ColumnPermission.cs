@@ -8,15 +8,13 @@ using System.Threading.Tasks;
 
 namespace DataPermission.Domain.Entities
 {
-    public class ColumnPermission : BaseEntity, IAggregateRoot
+    public class ColumnPermission : DataPermission, IAggregateRoot
     {
-        public string TableName { get; private set; }
-        public string ColumnName { get; private set; }
-        public string? Description { get; set; }
+        public string ColumnName { get; private set; } = default!;
+     
         private ColumnPermission() { }
-        public ColumnPermission(string tableName, string columnName)
+        public ColumnPermission(string tableName, string columnName,string? description):base(tableName, description)
         {
-            TableName = tableName;
             ColumnName = columnName;
         }
 
@@ -24,9 +22,6 @@ namespace DataPermission.Domain.Entities
         {
             ColumnName = columnName;
         }
-        public void UpdateTableName(string tableName)
-        {
-            TableName = tableName;
-        }
+        
     }
 }
