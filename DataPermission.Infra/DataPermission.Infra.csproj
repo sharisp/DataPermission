@@ -14,8 +14,4 @@
     <ProjectReference Include="..\DataPermission.Domain\DataPermission.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Configs\" />
-  </ItemGroup>
-
 </Project>
