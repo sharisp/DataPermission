@@ -15,6 +15,9 @@ namespace DataPermission.Domain
         {
          //   services.AddDomainShardKernelCollection(configuration);
 
+            services.AddScoped<Services.ColumnPermissionService>();
+            services.AddScoped<Services.RowPermissionService>();
+            services.AddScoped<Services.RoleDataPermissionService>();
 
 
         }
