@@ -7,19 +7,26 @@ using System.Threading.Tasks;
 
 namespace DataPermission.Domain.Entities
 {
-    public class DataPermission:BaseEntity
+    public class DataPermission : BaseEntity
     {
-        public string TableName { get; private set; }=default!;
-        public string? Description { get;private set; }
+        /// <summary>
+        /// include schema name,database name, e.g. Identity.dbo.Users
+        /// </summary>
+        public string FullTableName { get; private set; } = default!;
+        public string? Description { get; private set; }
         protected DataPermission() { }
-        public DataPermission(string tableName, string? description)
+        public DataPermission(string fullTableName, string? description)
         {
-            TableName = tableName;
+            FullTableName = fullTableName;
             Description = description;
         }
-        public void UpdateTableName(string tableName)
+        public void UpdateTableName(string fullTableName)
         {
-            TableName = tableName;
+            FullTableName = fullTableName;
+        }
+        public void UpdateDescription(string? description)
+        {
+            Description = description;
         }
     }
 }

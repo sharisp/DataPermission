@@ -14,5 +14,13 @@ namespace DataPermission.Domain.Entities
         public  long RoleId { get; set; }
         public long DataPermissionId { get; set; }
         public DataPermissionTypeEnum DataPermissionType { get; set; }
+
+        private RoleDataPermission() { }
+        public RoleDataPermission(long roleId, long dataPermissionId, DataPermissionTypeEnum dataPermissionType)
+        {
+            RoleId = roleId;
+            DataPermissionId = dataPermissionId;
+            DataPermissionType = dataPermissionType;
+        }
     }
 }

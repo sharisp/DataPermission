@@ -13,7 +13,7 @@ namespace DataPermission.Domain.Entities
         public string ColumnName { get; private set; } = default!;
      
         private ColumnPermission() { }
-        public ColumnPermission(string tableName, string columnName,string? description):base(tableName, description)
+        public ColumnPermission(string fullTableName, string columnName,string? description):base(fullTableName, description)
         {
             ColumnName = columnName;
         }

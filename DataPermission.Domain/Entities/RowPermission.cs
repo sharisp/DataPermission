@@ -17,7 +17,7 @@ namespace DataPermission.Domain.Entities
         public string? ScopeValue { get; private set; }      
 
         private RowPermission() { }
-        public RowPermission(string tableName, RowDataScopeEnum dataScopeType, string? scopeField, string? scopeValue,string? description) : base(tableName, description)
+        public RowPermission(string fullTableName, RowDataScopeEnum dataScopeType, string? scopeField, string? scopeValue,string? description) : base(fullTableName, description)
         {         
             DataScopeType = dataScopeType;
             ScopeField = scopeField;
