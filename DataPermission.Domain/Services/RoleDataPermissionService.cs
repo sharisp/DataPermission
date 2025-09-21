@@ -12,7 +12,7 @@ namespace DataPermission.Domain.Services
     {
         public async Task SetRoleDataPermission(long roleId, List<long> dataPermissionIds, DataPermissionTypeEnum dataPermissionTypeEnum)
         {
-            await roleDataPermissionRepository.DeleteByRoleId(roleId);
+            await roleDataPermissionRepository.DeleteByRoleId(roleId, dataPermissionTypeEnum);
             await roleDataPermissionRepository.AddRangeAsync(roleId, dataPermissionIds, dataPermissionTypeEnum);
         }
     }
