@@ -10,7 +10,7 @@ namespace DataPermission.Domain.Interfaces
 {
     public interface IRoleDataPermissionRepository
     {
-        Task DeleteByRoleId(long roleId);
+        Task DeleteByRoleId(long roleId, DataPermissionTypeEnum dataPermissionTypeEnum);
 
         Task AddRangeAsync(List<RoleDataPermission> entities);
 
