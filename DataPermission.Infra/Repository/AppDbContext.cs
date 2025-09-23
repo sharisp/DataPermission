@@ -12,7 +12,7 @@ namespace DataPermission.Infra.Repository
 {
     public class AppDbContext : BaseDbContext
     {
-        // 不能直接用DbContextOptions options
+       
 
         public AppDbContext(DbContextOptions options)
             : base(options)
@@ -24,11 +24,8 @@ namespace DataPermission.Infra.Repository
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
 
-        public DbSet<RowPermission> RowPermissions { get; set; }
-
-        public DbSet<ColumnPermission> ColumnPermissions { get; set; }
-        public DbSet<RoleDataPermission> RoleDataPermissions { get; set; }
-
-
+        public DbSet<RowPermissionBlackList> RowPermissions { get; set; }
+        public DbSet<ColumnPermissionBlackList> ColumnPermissions { get; set; }
+        public DbSet<RoleDataPermissionBlackList> RoleDataPermissions { get; set; }
     }
 }
