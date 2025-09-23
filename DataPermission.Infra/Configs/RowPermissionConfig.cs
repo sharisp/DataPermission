@@ -9,17 +9,19 @@ using System.Threading.Tasks;
 
 namespace DataPermission.Infra.Configs
 {
-    public class RowPermissionConfig : IEntityTypeConfiguration<RowPermission>
+    public class RowPermissionConfig : IEntityTypeConfiguration<RowPermissionBlackList>
     {
-        public void Configure(EntityTypeBuilder<RowPermission> builder)
+        public void Configure(EntityTypeBuilder<RowPermissionBlackList> builder)
         {
-            builder.ToTable("T_Row_Permissions");
+            builder.ToTable("T_RowPermissions_BlackList");
             builder.HasKey(e => e.Id);
             builder.Property(e => e.Id).ValueGeneratedNever();
 
             builder.Property(e => e.ScopeField).IsUnicode(false).HasMaxLength(256);
 
-            builder.Property(e => e.TableName).IsUnicode(false).HasMaxLength(256);
+            builder.Property(e => e.ScopeValue).IsUnicode(false).HasMaxLength(256);
+            builder.Property(e => e.FullTableName).IsUnicode(false).HasMaxLength(512);
+            builder.Property(e => e.Description).IsUnicode(true).HasMaxLength(512);
         }
     }
 }

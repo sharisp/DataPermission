@@ -1,4 +1,7 @@
-﻿using Infrastructure.SharedKernel;
+﻿using DataPermission.Domain;
+using DataPermission.Domain.Interfaces;
+using DataPermission.Infra.Repository;
+using Infrastructure.SharedKernel;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -13,7 +16,14 @@ namespace DataPermission.Infra
     {
         public static void AddInfra(this IServiceCollection services, IConfiguration configuration)
         {
-          services.AddInfrastructureKernelCollection(configuration);
+            services.AddInfrastructureKernelCollection(configuration);
+            services.AddScoped<IColumnDataPermissionRepository, ColumnPermissionRepository>();
+            services.AddScoped<IRowDataPermissionRepository, RowPermissionRepository>();
+            services.AddScoped<IRoleDataPermissionRepository, RoleDataPermissionRepository>();
+            services.AddScoped<CommonQuery>();          
+            services.AddDomain(configuration);
+
+
         }
     }
 }
