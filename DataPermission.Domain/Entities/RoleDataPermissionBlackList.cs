@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 
 namespace DataPermission.Domain.Entities
 {
-    public class RoleDataPermission:BaseEntity,IAggregateRoot
+    public class RoleDataPermissionBlackList:BaseEntity,IAggregateRoot
     {
         public  long RoleId { get; set; }
         public long DataPermissionId { get; set; }
         public DataPermissionTypeEnum DataPermissionType { get; set; }
 
-        private RoleDataPermission() { }
-        public RoleDataPermission(long roleId, long dataPermissionId, DataPermissionTypeEnum dataPermissionType)
+        private RoleDataPermissionBlackList() { }
+        public RoleDataPermissionBlackList(long roleId, long dataPermissionId, DataPermissionTypeEnum dataPermissionType)
         {
             RoleId = roleId;
             DataPermissionId = dataPermissionId;

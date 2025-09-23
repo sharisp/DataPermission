@@ -9,22 +9,27 @@ using System.Threading.Tasks;
 
 namespace DataPermission.Domain.Entities
 {
-    public class RowPermission: DataPermission, IAggregateRoot
+    public class RowPermissionBlackList : DataPermissionBlackList, IAggregateRoot
     {
-      
+
         public RowDataScopeEnum DataScopeType { get; private set; }
         public string? ScopeField { get; private set; }
-        public string? ScopeValue { get; private set; }      
+        public string? ScopeValue { get; private set; }
+        public RowDataDenyOperateEnum RowDataDenyOperateType { get; set; } = RowDataDenyOperateEnum.NoRead;
 
-        private RowPermission() { }
-        public RowPermission(string fullTableName, RowDataScopeEnum dataScopeType, string? scopeField, string? scopeValue,string? description) : base(fullTableName, description)
-        {         
+        private RowPermissionBlackList() { }
+        public RowPermissionBlackList(string fullTableName, RowDataScopeEnum dataScopeType, RowDataDenyOperateEnum rowDataDenyOperateType, string? scopeField, string? scopeValue, string? description) : base(fullTableName, description)
+        {
             DataScopeType = dataScopeType;
             ScopeField = scopeField;
             ScopeValue = scopeValue;
+            RowDataDenyOperateType = rowDataDenyOperateType;
         }
 
-     
+        public void UpdateRowDataOperateType(RowDataDenyOperateEnum rowDataDenyOperateType)
+        {
+            RowDataDenyOperateType = rowDataDenyOperateType;
+        }
         public void UpdateDataScopeType(RowDataScopeEnum dataScopeType)
         {
             DataScopeType = dataScopeType;

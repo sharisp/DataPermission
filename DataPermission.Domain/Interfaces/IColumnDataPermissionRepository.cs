@@ -9,10 +9,10 @@ namespace DataPermission.Domain.Interfaces
 {
     public interface IColumnDataPermissionRepository
     {
-        void Delete(ColumnPermission info);
+        void Delete(ColumnPermissionBlackList info);
         Task<bool> ExistsConflictAsync(string tableName, string columnName, long? id = null);
     
-        Task AddAsync(ColumnPermission entity);
-        Task<List<ColumnPermission>> GetAllByRoleId(long roleId);
+        Task AddAsync(ColumnPermissionBlackList entity);
+        Task<List<ColumnPermissionBlackList>> GetAllByRoleId(long roleId);
     }
 }

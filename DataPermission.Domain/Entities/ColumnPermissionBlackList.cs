@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace DataPermission.Domain.Entities
 {
-    public class ColumnPermission : DataPermission, IAggregateRoot
+    public class ColumnPermissionBlackList : DataPermissionBlackList, IAggregateRoot
     {
         public string ColumnName { get; private set; } = default!;
      
-        private ColumnPermission() { }
-        public ColumnPermission(string fullTableName, string columnName,string? description):base(fullTableName, description)
+        private ColumnPermissionBlackList() { }
+        public ColumnPermissionBlackList(string fullTableName, string columnName,string? description):base(fullTableName, description)
         {
             ColumnName = columnName;
         }

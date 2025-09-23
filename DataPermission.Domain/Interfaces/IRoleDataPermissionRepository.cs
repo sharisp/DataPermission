@@ -12,7 +12,7 @@ namespace DataPermission.Domain.Interfaces
     {
         Task DeleteByRoleId(long roleId, DataPermissionTypeEnum dataPermissionTypeEnum);
 
-        Task AddRangeAsync(List<RoleDataPermission> entities);
+        Task AddRangeAsync(List<RoleDataPermissionBlackList> entities);
 
         Task AddRangeAsync(long roleId, List<long> dataPermissionIds, DataPermissionTypeEnum dataPermissionTypeEnum);
        
