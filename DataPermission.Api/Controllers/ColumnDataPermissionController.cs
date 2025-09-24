@@ -9,13 +9,14 @@ using DataPermission.Infra.Extensions;
 using DataPermission.Infra.Options;
 using DataPermission.Infra.Repository;
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataPermission.Api.Controllers
 {
     [Route("api/[controller]")]
-   // [Authorize]
+    [Authorize]
     [ApiController]
     public class ColumnDataPermissionController(IColumnDataPermissionRepository repository, IValidator<ColumnPermissionDto> validator, ColumnPermissionMapper mapper, ColumnPermissionService domainService,CommonQuery commonQuery) : ControllerBase
     {

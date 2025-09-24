@@ -1,4 +1,9 @@
 
+using DataPermission.Api.MiddleWares;
+using DataPermission.Infra;
+using FileService.Api.MiddleWares;
+using Microsoft.AspNetCore.Authorization;
+
 namespace DataPermission.Api
 {
     public class Program
@@ -8,13 +13,13 @@ namespace DataPermission.Api
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-
-            builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
-
+            builder.Services.AddApi(builder.Configuration);
+            builder.Services.AddInfra(builder.Configuration);
             var app = builder.Build();
+
+            app.UseRouting();
+            app.UseCors("AllowAll");
+            app.UseMiddleware<CustomerExceptionMiddleware>();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -23,13 +28,18 @@ namespace DataPermission.Api
                 app.UseSwaggerUI();
             }
 
-            app.UseHttpsRedirection();
+           // app.UseCors();
+            //   app.UseForwardedHeaders();
+            //app.UseHttpsRedirection();//不能与ForwardedHeaders很好的工作，而且webapi项目也没必要配置这个
+            //app.UseAuthorization();
 
-            app.UseAuthorization();
+            app.MapGet("/", [AllowAnonymous] () => "Hello from Data Permission!");
+
 
 
             app.MapControllers();
 
+          // app.UseMiddleware<CustomPermissionCheckMiddleware>();
             app.Run();
         }
     }

@@ -5,12 +5,14 @@ using DataPermission.Domain.Enums;
 using DataPermission.Domain.Interfaces;
 using DataPermission.Domain.Services;
 using DataPermission.Infra.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DataPermission.Api.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
     public class DataPermissionController(IColumnDataPermissionRepository columnPermissionRepository, IRowDataPermissionRepository rowPermissionRepository, RoleDataPermissionService domainService) : ControllerBase
     {

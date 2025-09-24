@@ -9,6 +9,10 @@ using System;
 using FluentValidation;
 using DataPermission.Api.Controllers;
 using DataPermission.Infra.Repository;
+using System.Text.Json.Serialization;
+using DataPermission.Api.Contracts.Mapping;
+using DataPermission.Api.ActionFilter;
+using Microsoft.Extensions.Options;
 
 namespace DataPermission.Api
 {
@@ -28,8 +32,9 @@ namespace DataPermission.Api
                 });
             });
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+            services.AddScoped<UnitOfWorkActionFilter>();
 
-            services.AddControllers().ConfigureApiBehaviorOptions(options =>
+            services.AddControllers(options => options.Filters.AddService<UnitOfWorkActionFilter>()).ConfigureApiBehaviorOptions(options =>
             {
                 options.InvalidModelStateResponseFactory = context =>
 
@@ -41,11 +46,12 @@ namespace DataPermission.Api
                 options.JsonSerializerOptions.NumberHandling =
                     System.Text.Json.Serialization.JsonNumberHandling.WriteAsString
                     | System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString;
+                options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
             });
             services.AddEndpointsApiExplorer();
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(
               typeof(IUnitOfWork).Assembly,
-                   typeof(WeatherForecastController).Assembly,
+                   typeof(RowDataPermissionController).Assembly,
               Assembly.GetExecutingAssembly()
           // typeof(AlbumController).Assembly //
           ));
@@ -57,8 +63,9 @@ namespace DataPermission.Api
             services.AddScoped<BaseDbContext>(sp => sp.GetRequiredService<AppDbContext>());
 
             services.AddHttpContextAccessor(); //for accessing HttpContext in services IHttpContextAccessor
-            services.AddSwaggerGen();
+                                               // services.AddSwaggerGen();
             services.AddJWTAuthentication(configuration);
+            services.AddAllMapper();
             // builder.Services.AddDomainCollection(builder.Configuration);
 
 

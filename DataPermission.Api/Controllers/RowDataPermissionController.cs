@@ -9,6 +9,7 @@ using DataPermission.Infra.Extensions;
 using DataPermission.Infra.Options;
 using DataPermission.Infra.Repository;
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,7 +17,7 @@ namespace DataPermission.Api.Controllers
 {
 
     [Route("api/[controller]")]
-   // [Authorize]
+    [Authorize]
     [ApiController]
     public class RowDataPermissionController(IRowDataPermissionRepository repository, IValidator<RowPermissionDto> validator, RowPermissionMapper mapper, RowPermissionService domainService,CommonQuery commonQuery) : ControllerBase
     {
