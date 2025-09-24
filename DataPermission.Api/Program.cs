@@ -31,7 +31,7 @@ namespace DataPermission.Api
            // app.UseCors();
             //   app.UseForwardedHeaders();
             //app.UseHttpsRedirection();//不能与ForwardedHeaders很好的工作，而且webapi项目也没必要配置这个
-            //app.UseAuthorization();
+            app.UseAuthorization();
 
             app.MapGet("/", [AllowAnonymous] () => "Hello from Data Permission!");
 
@@ -39,7 +39,7 @@ namespace DataPermission.Api
 
             app.MapControllers();
 
-          // app.UseMiddleware<CustomPermissionCheckMiddleware>();
+           app.UseMiddleware<CustomPermissionCheckMiddleware>();
             app.Run();
         }
     }
