@@ -9,26 +9,26 @@ using System.Threading.Tasks;
 
 namespace DataPermission.Domain.Entities
 {
-    public class RowPermissionBlackList : DataPermissionBlackList, IAggregateRoot
+    public class RowPermissionList : DataPermissionList, IAggregateRoot
     {
 
         public RowDataScopeEnum DataScopeType { get; private set; }
         public string? ScopeField { get; private set; }
         public string? ScopeValue { get; private set; }
-        public RowDataDenyOperateEnum RowDataDenyOperateType { get; set; } = RowDataDenyOperateEnum.NoRead;
+        public RowDataAllowOperateEnum RowDataAllowOperateType { get; set; } = RowDataAllowOperateEnum.All;
 
-        private RowPermissionBlackList() { }
-        public RowPermissionBlackList(string fullTableName, RowDataScopeEnum dataScopeType, RowDataDenyOperateEnum rowDataDenyOperateType, string? scopeField, string? scopeValue, string? description) : base(fullTableName, description)
+        private RowPermissionList() { }
+        public RowPermissionList(string fullTableName, RowDataScopeEnum dataScopeType, RowDataAllowOperateEnum rowDataAllowOperateType, string? scopeField, string? scopeValue, string? description) : base(fullTableName, description)
         {
             DataScopeType = dataScopeType;
             ScopeField = scopeField;
             ScopeValue = scopeValue;
-            RowDataDenyOperateType = rowDataDenyOperateType;
+            RowDataAllowOperateType = rowDataAllowOperateType;
         }
 
-        public void UpdateRowDataOperateType(RowDataDenyOperateEnum rowDataDenyOperateType)
+        public void UpdateRowDataOperateType(RowDataAllowOperateEnum rowDataAllowOperateType)
         {
-            RowDataDenyOperateType = rowDataDenyOperateType;
+            RowDataAllowOperateType = rowDataAllowOperateType;
         }
         public void UpdateDataScopeType(RowDataScopeEnum dataScopeType)
         {

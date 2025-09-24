@@ -24,8 +24,8 @@ namespace DataPermission.Infra.Repository
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
 
-        public DbSet<RowPermissionBlackList> RowPermissions { get; set; }
+        public DbSet<RowPermissionList> RowPermissions { get; set; }
         public DbSet<ColumnPermissionBlackList> ColumnPermissions { get; set; }
-        public DbSet<RoleDataPermissionBlackList> RoleDataPermissions { get; set; }
+        public DbSet<RoleDataPermissionList> RoleDataPermissions { get; set; }
     }
 }

@@ -19,7 +19,7 @@ namespace DataPermission.Infra.Repository
             this.dbContext = dbContext;
         }
       
-        public void Delete(RowPermissionBlackList info)
+        public void Delete(RowPermissionList info)
         {
             dbContext.RowPermissions.Remove(info);
         }
@@ -29,11 +29,11 @@ namespace DataPermission.Infra.Repository
                 return;
             await dbContext.RowPermissions.Where(t => ids.Contains(t.Id)).ExecuteDeleteAsync();
         }
-        public async Task AddAsync(RowPermissionBlackList entity)
+        public async Task AddAsync(RowPermissionList entity)
         {
             await dbContext.RowPermissions.AddAsync(entity);
         }
-        public async Task<List<RowPermissionBlackList>> GetAllByRoleId(long roleId)
+        public async Task<List<RowPermissionList>> GetAllByRoleId(long roleId)
         {
             var query = from dp in dbContext.RoleDataPermissions
                         join rp in dbContext.RowPermissions on dp.DataPermissionId equals rp.Id

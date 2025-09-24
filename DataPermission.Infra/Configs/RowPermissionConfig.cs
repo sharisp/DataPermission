@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace DataPermission.Infra.Configs
 {
-    public class RowPermissionConfig : IEntityTypeConfiguration<RowPermissionBlackList>
+    public class RowPermissionConfig : IEntityTypeConfiguration<RowPermissionList>
     {
-        public void Configure(EntityTypeBuilder<RowPermissionBlackList> builder)
+        public void Configure(EntityTypeBuilder<RowPermissionList> builder)
         {
-            builder.ToTable("T_RowPermissions_BlackList");
+            builder.ToTable("T_Row_DataPermissions");
             builder.HasKey(e => e.Id);
             builder.Property(e => e.Id).ValueGeneratedNever();
 

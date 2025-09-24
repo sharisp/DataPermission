@@ -7,7 +7,7 @@ namespace DataPermission.Api.Contracts.Dtos.Request
         public string FullTableName { get; set; }
         public string? Description { get; set; }
         public RowDataScopeEnum DataScopeType { get;  set; }
-        public RowDataDenyOperateEnum RowDataDenyOperateType { get; set; }
+        public RowDataAllowOperateEnum RowDataAllowOperateType { get; set; }
         public string? ScopeField { get;  set; }
         public string? ScopeValue { get;  set; }
 

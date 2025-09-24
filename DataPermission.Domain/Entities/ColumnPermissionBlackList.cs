@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataPermission.Domain.Entities
 {
-    public class ColumnPermissionBlackList : DataPermissionBlackList, IAggregateRoot
+    public class ColumnPermissionBlackList : DataPermissionList, IAggregateRoot
     {
         public string ColumnName { get; private set; } = default!;
      

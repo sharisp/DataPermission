@@ -24,19 +24,19 @@ namespace DataPermission.Api.Controllers
 
         [HttpGet("Detail/{id}")]
         [PermissionKey("RowPermission.Detail")]
-        public async Task<ActionResult<ApiResponse<RowPermissionBlackList>>> Detail(long id)
+        public async Task<ActionResult<ApiResponse<RowPermissionList>>> Detail(long id)
         {
 
-            var query = commonQuery.Query<RowPermissionBlackList>();
+            var query = commonQuery.Query<RowPermissionList>();
             var menu = await query.FirstOrDefaultAsync(t => t.Id == id);
             return this.OkResponse(menu);
         }
         [HttpGet("Pagination")]
         [PermissionKey("RowPermission.List")]
-        public async Task<ActionResult<ApiResponse<PaginationResponse<RowPermissionBlackList>>>> ListByPagination(int pageIndex = 1, int pageSize = 10, string tableName = "", string description = "")
+        public async Task<ActionResult<ApiResponse<PaginationResponse<RowPermissionList>>>> ListByPagination(int pageIndex = 1, int pageSize = 10, string tableName = "", string description = "")
         {
 
-            var query = commonQuery.Query<RowPermissionBlackList>();
+            var query = commonQuery.Query<RowPermissionList>();
 
             if (!string.IsNullOrWhiteSpace(tableName))
             {
@@ -75,7 +75,7 @@ namespace DataPermission.Api.Controllers
         {
             await ValidationHelper.ValidateModelAsync(dto, validator);
 
-            var info = await commonQuery.Query<RowPermissionBlackList>().FirstOrDefaultAsync(t => t.Id == id);
+            var info = await commonQuery.Query<RowPermissionList>().FirstOrDefaultAsync(t => t.Id == id);
             if (info == null) return this.FailResponse("not found");
 
 
@@ -92,7 +92,7 @@ namespace DataPermission.Api.Controllers
         public async Task<ActionResult<ApiResponse<BaseResponse>>> Delete(long id)
         {
 
-            var info = await commonQuery.Query<RowPermissionBlackList>().FirstOrDefaultAsync(t => t.Id == id);
+            var info = await commonQuery.Query<RowPermissionList>().FirstOrDefaultAsync(t => t.Id == id);
             if (info == null) return this.FailResponse(" not found");
             repository.Delete(info);
 

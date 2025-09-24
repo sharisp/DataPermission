@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace DataPermission.Domain.Enums
 {
-    public enum RowDataDenyOperateEnum
+    [Flags]
+    public enum RowDataAllowOperateEnum
     {
-        NoRead = 0,
-        NoEdit = 1,
-        NoDelete = 2,
-        NoEditAndDelete = 3,
+        Read = 1,
+        Edit = 2,
+        Delete = 4,
+        All = Read | Edit | Delete
     }
+   
 }

@@ -11,11 +11,11 @@ namespace DataPermission.Domain.Interfaces
     public interface IRowDataPermissionRepository
     {
      
-        void Delete(RowPermissionBlackList info);
+        void Delete(RowPermissionList info);
        
         Task BatchDelete(List<long> ids);
-        Task AddAsync(RowPermissionBlackList entity);
-        Task<List<RowPermissionBlackList>> GetAllByRoleId(long roleId);
+        Task AddAsync(RowPermissionList entity);
+        Task<List<RowPermissionList>> GetAllByRoleId(long roleId);
         Task<bool> ExistsConflictAsync(string tableName, RowDataScopeEnum dataScopeType, string? scopeValue, string? scopeField, long? id = null);
     }
 }

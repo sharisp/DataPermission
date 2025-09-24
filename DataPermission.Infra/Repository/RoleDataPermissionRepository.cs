@@ -19,16 +19,16 @@ namespace DataPermission.Infra.Repository
             await dbContext.RoleDataPermissions.Where(t => t.RoleId == roleId&&t.DataPermissionType==dataPermissionTypeEnum).ExecuteDeleteAsync();
         }
 
-        public async Task AddRangeAsync(List<RoleDataPermissionBlackList> entities)
+        public async Task AddRangeAsync(List<RoleDataPermissionList> entities)
         {
             await dbContext.RoleDataPermissions.AddRangeAsync(entities);
         }
         public async Task AddRangeAsync(long roleId,List<long> dataPermissionIds,DataPermissionTypeEnum dataPermissionTypeEnum)
         {
-            List<RoleDataPermissionBlackList> entities = new List<RoleDataPermissionBlackList>();
+            List<RoleDataPermissionList> entities = new List<RoleDataPermissionList>();
             foreach (var item in dataPermissionIds)
             {
-                entities.Add(new RoleDataPermissionBlackList(roleId, item, dataPermissionTypeEnum));
+                entities.Add(new RoleDataPermissionList(roleId, item, dataPermissionTypeEnum));
             }
             await dbContext.RoleDataPermissions.AddRangeAsync(entities);
         }
