@@ -34,6 +34,10 @@ namespace DataPermission.Api
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             services.AddScoped<UnitOfWorkActionFilter>();
 
+
+            services.AddHttpClient<ApiClientHelper>();
+            services.AddHttpContextAccessor();
+            services.AddScoped<PermissionCheckHelper>();
             services.AddControllers(options => options.Filters.AddService<UnitOfWorkActionFilter>()).ConfigureApiBehaviorOptions(options =>
             {
                 options.InvalidModelStateResponseFactory = context =>

@@ -20,6 +20,7 @@ namespace DataPermission.Infra
             services.AddScoped<IColumnDataPermissionRepository, ColumnPermissionRepository>();
             services.AddScoped<IRowDataPermissionRepository, RowPermissionRepository>();
             services.AddScoped<IRoleDataPermissionRepository, RoleDataPermissionRepository>();
+
             services.AddScoped<CommonQuery>();          
             services.AddDomain(configuration);
 
