@@ -12,5 +12,12 @@ namespace DomainTests
             Assert.Equal("dbo.Users", entity.FullTableName);
             Assert.True(entity.Id >0);
         }
+        [Fact]
+        public void Test_UpdateColumnName()
+        {
+            ColumnPermissionBlackList entity = new ColumnPermissionBlackList("dbo.Users", "Password", "Sensitive column");
+            entity.UpdateColumnName("SSN");
+            Assert.Equal("SSN", entity.ColumnName);
+        }
     }
 }
