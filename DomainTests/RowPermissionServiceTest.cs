@@ -22,9 +22,13 @@ namespace DomainTests
             _rowPermissionService = new RowPermissionService(_rowPermisionRespMock.Object);
         }
         [Fact]
-        public void Test_ExistsConflictAsync_Fail()
+        public async void Test_ExistsDeptWithoutIdConflictAsync_Fail()
         {
-        
+            _rowPermisionRespMock.Setup( x => x.ExistsConflictAsync("TableA",DataPermission.Domain.Enums.RowDataScopeEnum.Department,null,null,null)).ReturnsAsync(false);
+            var result = await _rowPermissionService.ExistsConflictAsync("TableA", DataPermission.Domain.Enums.RowDataScopeEnum.Department, null, null, null);
+            Assert.False(result);
         }
+
+        
     }
 }
