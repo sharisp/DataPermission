@@ -42,6 +42,12 @@ namespace DomainTests
             var result = await _rowPermissionService.ExistsConflictAsync("TableA", DataPermission.Domain.Enums.RowDataScopeEnum.Personal, null, null, null);
             Assert.True(result);
         }
-
+        [Fact]
+        public async void Test_ExistsPersonWithIdConflictAsync_Fail()
+        {
+            _rowPermisionRespMock.Setup(x => x.ExistsConflictAsync("TableA", DataPermission.Domain.Enums.RowDataScopeEnum.Personal, null, null, 1)).ReturnsAsync(true);
+            var result = await _rowPermissionService.ExistsConflictAsync("TableA", DataPermission.Domain.Enums.RowDataScopeEnum.Personal, null, null, 2);
+            Assert.False(result);
+        }
     }
 }
