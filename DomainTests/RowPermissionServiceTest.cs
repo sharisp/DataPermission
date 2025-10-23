@@ -54,27 +54,34 @@ namespace DomainTests
         {
             _rowPermisionRespMock.Setup(x => x.ExistsConflictAsync("TestDb.dbo.TableA", DataPermission.Domain.Enums.RowDataScopeEnum.Personal, null, null, 1)).ReturnsAsync(true);
             var result = await _rowPermissionService.ExistsConflictAsync("TestDb.dbo.TableA", DataPermission.Domain.Enums.RowDataScopeEnum.Personal, null, null, 1);
-            Assert.False(result);
+            Assert.True(result);
         }
         [Fact]
         public async void Test_ExistsDeptConflictAsync_Success()
         {
             _rowPermisionRespMock.Setup(x => x.ExistsConflictAsync("TestDb.dbo.TableA", DataPermission.Domain.Enums.RowDataScopeEnum.Department, null, null, null)).ReturnsAsync(true);
             var result = await _rowPermissionService.ExistsConflictAsync("TestDb.dbo.TableA", DataPermission.Domain.Enums.RowDataScopeEnum.Department, null, null, null);
-            Assert.False(result);
+            Assert.True(result);
         }
         [Fact]
         public async void Test_ExistsDeptWithIdConflictAsync_Success()
         {
             _rowPermisionRespMock.Setup(x => x.ExistsConflictAsync("TestDb.dbo.TableA", DataPermission.Domain.Enums.RowDataScopeEnum.Department, null, null,1)).ReturnsAsync(true);
             var result = await _rowPermissionService.ExistsConflictAsync("TestDb.dbo.TableA", DataPermission.Domain.Enums.RowDataScopeEnum.Department, null, null,1);
-            Assert.False(result);
+            Assert.True(result);
         }
         [Fact]
         public async void Test_ExistsDeptWithIdConflictAsync_Fail()
         {
             _rowPermisionRespMock.Setup(x => x.ExistsConflictAsync("TestDb.dbo.TableA", DataPermission.Domain.Enums.RowDataScopeEnum.Department, null, null, 1)).ReturnsAsync(true);
             var result = await _rowPermissionService.ExistsConflictAsync("TestDb.dbo.TableA", DataPermission.Domain.Enums.RowDataScopeEnum.Department, null, null, 2);
+            Assert.False(result);
+        }
+        [Fact]
+        public async void Test_ExistsDeptWithIdConflictAsync_Fail2()
+        {
+            _rowPermisionRespMock.Setup(x => x.ExistsConflictAsync("TestDb.dbo.TableA", DataPermission.Domain.Enums.RowDataScopeEnum.Department, null, null, 1)).ReturnsAsync(false);
+            var result = await _rowPermissionService.ExistsConflictAsync("TestDb.dbo.TableA", DataPermission.Domain.Enums.RowDataScopeEnum.Department, null, null, 1);
             Assert.False(result);
         }
     }
